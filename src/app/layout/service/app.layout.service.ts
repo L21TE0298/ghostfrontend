@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { productDTO } from '../../core/components/interfaces/Iproducts.interface'; 
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment.developmen';
 
 export interface AppConfig {
     inputStyle: string;
@@ -23,7 +26,13 @@ interface LayoutState {
     providedIn: 'root',
 })
 export class LayoutService {
+    private apiUrl = environment.apiUrl + '/products'; 
 
+    constructor(private http: HttpClient) { }
+    getAllProducts(): Observable<productDTO[]> {
+        return this.http.get<productDTO[]>(this.apiUrl);
+    }
+        
     config: AppConfig = {
         ripple: false,
         inputStyle: 'outlined',
