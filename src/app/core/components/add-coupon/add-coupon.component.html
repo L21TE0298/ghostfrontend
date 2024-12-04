@@ -1,0 +1,46 @@
+<h1>Register a Coupon</h1>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="codeDiscount">Code Discount:</label>
+    <input id="codeDiscount" formControlName="codeDiscount" />
+  </div>
+
+  <div>
+    <label for="description">Description:</label>
+    <input id="description" formControlName="description" />
+  </div>
+
+  <div>
+    <label for="initDate">Init Date:</label>
+    <input id="initDate" type="date" formControlName="initDate" />
+  </div>
+
+  <div>
+    <label for="expirationDate">Expiration Date:</label>
+    <input id="expirationDate" type="date" formControlName="expirationDate" />
+  </div>
+  <div>
+    <label for="status">Status:</label>
+    <input id="status" type="text" formControlName="status" />
+  </div>
+  <div>
+    <label for="discountPercentage">Discount Percentage:</label>
+    <input
+      id="discountPercentage"
+      type="number"
+      formControlName="discountPercentage"
+    />
+  </div>
+
+  <div>
+    <label for="idCategory">Category ID:</label>
+    <input id="idCategory" formControlName="idCategory" />
+  </div>
+
+  <button type="submit" [disabled]="form.invalid">Register Coupon</button>
+  <button type="button" (click)="cancel()">Cancel</button>
+</form>
+
+<div *ngIf="message">
+  <p>{{ message }}</p>
+</div>

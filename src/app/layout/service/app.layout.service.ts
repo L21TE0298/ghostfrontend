@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { environment } from '../../environment/environment.development';
 import { HttpClient } from '@angular/common/http';
-import { CouponDTO } from '../../core/components/interfaces/coupons.interface';
+import { CouponCrearDTO, CouponDTO } from '../../core/components/interfaces/coupons.interface';
 
 export interface AppConfig {
     inputStyle: string;
@@ -26,12 +26,34 @@ interface LayoutState {
     providedIn: 'root',
 })
 export class LayoutService {
-    private urlBaseCoupons =environment.apiURL+'/coupons';  
-    constructor(private http: HttpClient) { }   
-    getCoupons():Observable<CouponDTO[]>{
-        return this.http.get<CouponDTO[]>(this.urlBaseCoupons);
-    }   
+    private apiUrl = 'http://localhost:9090/coupons'; // Cambia esta URL por la de tu API
 
+  constructor(private http: HttpClient) {}
+
+  getAllCoupons(): Observable<CouponDTO[]> {
+    return this.http.get<CouponDTO[]>(this.apiUrl);
+  }
+  // En LayoutService (servicio)
+getActiveCoupons(): Observable<CouponDTO[]> {
+    return this.http.get<CouponDTO[]>('http://localhost:9090/coupons/active');
+  }
+  
+  getInactiveCoupons(): Observable<CouponDTO[]> {
+    return this.http.get<CouponDTO[]>('http://localhost:9090/coupons/inactive');
+  }
+  
+  registerCoupon(couponDTO: CouponCrearDTO): Observable<{ message: string; coupon: CouponDTO }> {
+    return this.http.post<{ message: string; coupon: CouponDTO }>(this.apiUrl, couponDTO);
+  }
+    // Obtener un cupón por su id
+    getCouponById(idCoupon: number): Observable<CouponDTO> {
+        return this.http.get<CouponDTO>(`${this.apiUrl}/${idCoupon}`);
+      }
+    
+      // Actualizar un cupón
+      updateCoupon(coupon: CouponDTO): Observable<any> {
+        return this.http.put(`${this.apiUrl}/${coupon.idCoupon}`, coupon);
+      }
     config: AppConfig = {
         ripple: false,
         inputStyle: 'outlined',

@@ -1,58 +1,55 @@
-<div class="grid">
-    <div class="col-12">
-      <div class="card">
-        <h5>Filter Menu</h5>
-        <p-table #dt1 [value]="listaCoupones" dataKey="idCoupon" [rows]="10" [loading]="loading" [rowHover]="true" styleClass="p-datatable-gridlines" [paginator]="true" [globalFilterFields]="['codeDiscount', 'description', 'status']" responsiveLayout="scroll">
-          
-          <ng-template pTemplate="caption">
-            <div class="flex justify-content-between flex-column sm:flex-row">
-              <button pButton label="Agregar nuevo" class="p-button-outlined mb-2" icon="pi pi-plus" routerLink="/Productos/Crear"></button>
-              <span class="p-input-icon-left mb-2">
-                <i class="pi pi-search"></i>
-                <input pInputText type="text" #filter (input)="onGlobalFilter(dt1, $event)" placeholder="Buscar" class="w-full"/>
-              </span>
-            </div>
-          </ng-template>
-  
-          <ng-template pTemplate="header">
-            <tr>
-              <th>Número de cupon</th>
-              <th>Codigo de descuento</th>
-              <th>Descripción</th>
-              <th>Descuento</th>
-              <th>Fecha de inicio</th>
-              <th>Expiración</th>
-              <th>Estado</th>
-              <th>Categoria</th>
-            </tr>
-          </ng-template>
-  
-          <ng-template pTemplate="body" let-coupon>
-            <tr>
-              <td>{{coupon.idCoupon}}</td>
-              <td>{{coupon.codeDiscount}}</td>
-              <td>{{coupon.description}}</td>
-              <td>{{coupon.discountPercentage}}%</td>
-              <td>{{coupon.initDate}}</td>
-              <td>{{coupon.expirationDate}}</td>
-              <td>{{coupon.status ? 'Activo' : 'Inactivo'}}</td>
-              <td>{{coupon.idCategory}}</td>
-            </tr>
-          </ng-template>
-  
-          <ng-template pTemplate="emptymessage">
-            <tr>
-              <td colspan="8">No se encontraron cupones.</td>
-            </tr>
-          </ng-template>
-  
-          <ng-template pTemplate="loadingbody">
-            <tr>
-              <td colspan="8">Cargando los datos. Por favor espere.</td>
-            </tr>
-          </ng-template>
-        </p-table>
-      </div>
+<p-table #dt1 [value]="listaCoupones" dataKey="idCoupon" [rows]="10" [loading]="loading" [rowHover]="true" styleClass="p-datatable-gridlines" [paginator]="true" [globalFilterFields]="['codeDiscount', 'description', 'status']" responsiveLayout="scroll">
+  <ng-template pTemplate="caption">
+    <div class="flex justify-content-between flex-column sm:flex-row">
+      <button pButton pRipple type="button" label="Cupones Activos" (click)="loadActiveCoupons()">Activos</button>
+      <button pButton pRipple type="button" label="Cupones Inactivos" (click)="loadInactiveCoupons()">Inactivos</button>
+      <button pButton label="Agregar Cupón" icon="pi pi-plus" (click)="redirectToAdd()">ADD</button>
+      <span class="p-input-icon-left mb-2">
+        <i class="pi pi-search"></i>
+        <input pInputText type="text" #filter (input)="onGlobalFilter(dt1, $event)" placeholder="Buscar" class="w-full"/>
+      </span>
     </div>
-  </div>
-  
+  </ng-template>
+
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Número de cupon</th>
+      <th>Codigo de descuento</th>
+      <th>Descripción</th>
+      <th>Descuento</th>
+      <th>Fecha de inicio</th>
+      <th>Expiración</th>
+      <th>Estado</th>
+      <th>Categoria</th>
+      <th>Acciones</th> <!-- Nueva columna de acciones -->
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-coupon>
+    <tr>
+      <td>{{coupon.idCoupon}}</td>
+      <td>{{coupon.codeDiscount}}</td>
+      <td>{{coupon.description}}</td>
+      <td>{{coupon.discountPercentage}}%</td>
+      <td>{{coupon.initDate}}</td>
+      <td>{{coupon.expirationDate}}</td>
+      <td>{{coupon.status ? 'Activo' : 'Inactivo'}}</td>
+      <td>{{coupon.idCategory}}</td>
+      <td>
+        <!-- <button pButton label="Actualizar" icon="pi pi-refresh" routerLink="/Coupons/Actualizar/{{coupon.idCoupon}}"></button> Botón de actualizar -->
+      </td>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td colspan="9">No se encontraron cupones.</td>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="loadingbody">
+    <tr>
+      <td colspan="9">Cargando los datos. Por favor espere.</td>
+    </tr>
+  </ng-template>
+</p-table>
