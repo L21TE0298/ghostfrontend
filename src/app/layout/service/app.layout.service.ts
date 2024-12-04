@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { environment } from '../../environment/environment.development';
+import { HttpClient } from '@angular/common/http';
+import { CouponDTO } from '../../core/components/interfaces/coupons.interface';
 
 export interface AppConfig {
     inputStyle: string;
@@ -23,6 +26,11 @@ interface LayoutState {
     providedIn: 'root',
 })
 export class LayoutService {
+    private urlBaseCoupons =environment.apiURL+'/coupons';  
+    constructor(private http: HttpClient) { }   
+    getCoupons():Observable<CouponDTO[]>{
+        return this.http.get<CouponDTO[]>(this.urlBaseCoupons);
+    }   
 
     config: AppConfig = {
         ripple: false,

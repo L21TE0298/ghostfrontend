@@ -18,6 +18,8 @@ import { AppConfigModule } from './config/config.module';
 import { AppSidebarComponent } from "./app.sidebar.component";
 import { AppLayoutComponent } from "./app.layout.component";
 import { CommonModule } from '@angular/common';
+import { LayoutService } from './service/app.layout.service';
+
 
 @NgModule({
     declarations: [
@@ -41,6 +43,7 @@ import { CommonModule } from '@angular/common';
         RouterModule,
         AppConfigModule
     ],
+    providers: [LayoutService],
     exports: [AppLayoutComponent]
 })
 export class AppLayoutModule { }

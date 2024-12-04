@@ -58,6 +58,12 @@ export class AppMenuComponent implements OnInit {
         ]
       },
       {
+        label: 'Coupons',
+        items: [
+          { label: 'Coupons', icon: 'pi pi-tags', routerLink: ['/Coupons'] }
+        ]
+      },
+      {
         label: 'Carrito',
         items: [
           { label: 'Carrito', icon: 'pi pi-fw pi-shopping-cart', routerLink: ['/documentation'] }
