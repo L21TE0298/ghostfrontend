@@ -19,6 +19,8 @@ import { AppSidebarComponent } from "./app.sidebar.component";
 import { AppLayoutComponent } from "./app.layout.component";
 import { CommonModule } from '@angular/common';
 import { LayoutService } from './service/app.layout.service';
+import { MapComponent } from "../core/components/map/map.component";
+import { PostalMapComponent } from "../core/components/postal-map/postal-map.component";
 
 @NgModule({
     declarations: [
@@ -30,18 +32,20 @@ import { LayoutService } from './service/app.layout.service';
         AppLayoutComponent,
     ],
     imports: [
-        CommonModule,
-        FormsModule,
-        HttpClientModule,
-        InputTextModule,
-        SidebarModule,
-        BadgeModule,
-        RadioButtonModule,
-        InputSwitchModule,
-        RippleModule,
-        RouterModule,
-        AppConfigModule
-    ],
+    CommonModule,
+    FormsModule,
+    HttpClientModule,
+    InputTextModule,
+    SidebarModule,
+    BadgeModule,
+    RadioButtonModule,
+    InputSwitchModule,
+    RippleModule,
+    RouterModule,
+    AppConfigModule,
+    MapComponent,
+    PostalMapComponent
+],
     providers: [LayoutService],
     exports: [AppLayoutComponent]
 })

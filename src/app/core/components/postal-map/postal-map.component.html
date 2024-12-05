@@ -1,0 +1,12 @@
+<div>
+  <form (ngSubmit)="onSubmit()">
+    <label for="postalCode">Código Postal:</label>
+    <input type="text" id="postalCode" [(ngModel)]="postalCode" name="postalCode" required>
+    <button type="submit">Mostrar Mapa</button>
+  </form>
+  <div id="map" style="height: 400px; margin-top: 20px;"></div>
+  <div *ngIf="lat && lng">
+    <p>Coordenadas: {{ lat }}, {{ lng }}</p>
+  </div>
+  <button (click)="onClose()">Cerrar</button>
+</div>
