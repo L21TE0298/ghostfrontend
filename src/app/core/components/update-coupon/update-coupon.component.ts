@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LayoutService } from '../../../layout/service/app.layout.service';
 import { CouponDTO } from '../interfaces/coupons.interface';
 
@@ -17,12 +17,13 @@ export class UpdateCouponComponent implements OnInit {
     initDate: new Date(),
     expirationDate: new Date(),
     status: false,
-    idCategory: 0
+    idCategory: 0,
   };
   errorMessage: string | null = null;
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private service: LayoutService
   ) {}
 
@@ -35,23 +36,28 @@ export class UpdateCouponComponent implements OnInit {
       next: (coupon) => {
         this.coupon = coupon;
       },
-      error: (err) => {
+      error: () => {
         this.errorMessage = 'Error al cargar el cupón';
       }
     });
   }
 
-  // Método para enviar la actualización del cupón
+  // Método para actualizar el cupón
   updateCoupon(): void {
-    if (this.coupon) {
-      this.service.updateCoupon(this.coupon).subscribe({
-        next: () => {
-          // Lógica para manejar éxito (ej. redirigir o mostrar un mensaje)
-        },
-        error: (err) => {
-          this.errorMessage = 'Error al actualizar el cupón';
-        }
-      });
-    }
+    this.service.updateCoupon(this.coupon).subscribe({
+      next: () => {
+        // Redirige o muestra un mensaje de éxito
+        alert('Coupon updated successfully!');
+        this.router.navigate(['/Coupons']);
+      },
+      error: () => {
+        this.errorMessage = 'Error al actualizar el cupón';
+      }
+    });
+  }
+
+  // Método para cancelar la operación y volver a la página principal
+  cancel(): void {
+    this.router.navigate(['/Coupons']);
   }
 }

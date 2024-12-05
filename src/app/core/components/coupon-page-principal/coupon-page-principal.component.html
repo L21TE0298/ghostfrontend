@@ -36,7 +36,7 @@
       <td>{{coupon.status ? 'Activo' : 'Inactivo'}}</td>
       <td>{{coupon.idCategory}}</td>
       <td>
-        <!-- <button pButton label="Actualizar" icon="pi pi-refresh" routerLink="/Coupons/Actualizar/{{coupon.idCoupon}}"></button> Botón de actualizar -->
+        <button pButton label="Actualizar" icon="pi pi-refresh" (click)="navigateToUpdate(coupon.idCoupon)">Update</button>
       </td>
     </tr>
   </ng-template>

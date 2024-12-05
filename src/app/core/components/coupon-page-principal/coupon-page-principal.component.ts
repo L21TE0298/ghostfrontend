@@ -31,8 +31,13 @@ export class CouponPagePrincipalComponent implements OnInit {
   redirectToAdd() {
     window.location.href = '/Coupons/Agregar';
   }
+  navigateToUpdate(idCoupon: string) {
+    this.router.navigate(['/Coupons/Actualizar', idCoupon]);
+  }
+  
   ngOnInit(): void {
-    this.loadAllCoupons(); // Por defecto, cargar todos los cupones
+    this.loadAllCoupons();
+     // Por defecto, cargar todos los cupones
   }
 
   loadAllCoupons(): void {

@@ -8,6 +8,7 @@ import { InputSwitchModule } from 'primeng/inputswitch';
 import { AppConfigComponent } from './app.config.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { UpdateCouponComponent } from '../../core/components/update-coupon/update-coupon.component';
 
 @NgModule({
     imports: [
@@ -21,7 +22,8 @@ import { RouterModule } from '@angular/router';
         RouterModule
     ],
     declarations: [
-        AppConfigComponent
+        AppConfigComponent,
+        UpdateCouponComponent
     ],
     exports: [
         AppConfigComponent

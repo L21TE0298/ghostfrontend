@@ -1,0 +1,97 @@
+<h1>Update Coupon</h1>
+
+<form (ngSubmit)="updateCoupon()">
+  <!-- Code Discount -->
+  <div>
+    <label for="codeDiscount">Code Discount:</label>
+    <input
+      id="codeDiscount"
+      type="text"
+      [(ngModel)]="coupon.codeDiscount"
+      name="codeDiscount"
+      required
+    />
+  </div>
+
+  <!-- Description -->
+  <div>
+    <label for="description">Description:</label>
+    <input
+      id="description"
+      type="text"
+      [(ngModel)]="coupon.description"
+      name="description"
+      required
+    />
+  </div>
+
+  <!-- Discount Percentage -->
+  <div>
+    <label for="discountPercentage">Discount Percentage:</label>
+    <input
+      id="discountPercentage"
+      type="number"
+      [(ngModel)]="coupon.discountPercentage"
+      name="discountPercentage"
+      required
+      min="0"
+      max="100"
+    />
+  </div>
+
+  <!-- Init Date -->
+  <div>
+    <label for="initDate">Init Date:</label>
+    <input
+      id="initDate"
+      type="date"
+      [(ngModel)]="coupon.initDate"
+      name="initDate"
+      required
+    />
+  </div>
+
+  <!-- Expiration Date -->
+  <div>
+    <label for="expirationDate">Expiration Date:</label>
+    <input
+      id="expirationDate"
+      type="date"
+      [(ngModel)]="coupon.expirationDate"
+      name="expirationDate"
+      required
+    />
+  </div>
+
+  <!-- Status -->
+  <div>
+    <label for="status">Status:</label>
+    <select id="status" [(ngModel)]="coupon.status" name="status" required>
+      <option [value]="true">Active</option>
+      <option [value]="false">Inactive</option>
+    </select>
+  </div>
+
+  <!-- Category ID -->
+  <div>
+    <label for="idCategory">Category ID:</label>
+    <input
+      id="idCategory"
+      type="number"
+      [(ngModel)]="coupon.idCategory"
+      name="idCategory"
+      required
+    />
+  </div>
+
+  <!-- Buttons -->
+  <div>
+    <button type="submit">Update Coupon</button>
+    <button type="button" (click)="cancel()">Cancel</button>
+  </div>
+</form>
+
+<!-- Error Message -->
+<div *ngIf="errorMessage" class="error">
+  <p>{{ errorMessage }}</p>
+</div>
