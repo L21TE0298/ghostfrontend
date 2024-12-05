@@ -9,6 +9,9 @@ import { AppConfigComponent } from './app.config.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { UpdateCouponComponent } from '../../core/components/update-coupon/update-coupon.component';
+import { UpdateIngredientComponent } from '../../core/components/update-ingredient/update-ingredient.component';
+import { UpdateCategoryComponent } from '../../core/components/update-category/update-category.component';
+import { UpdateNutrientComponent } from '../../core/components/update-nutrient/update-nutrient.component';
 
 @NgModule({
     imports: [
@@ -23,7 +26,10 @@ import { UpdateCouponComponent } from '../../core/components/update-coupon/updat
     ],
     declarations: [
         AppConfigComponent,
-        UpdateCouponComponent
+        UpdateCouponComponent,
+        //UpdateIngredientComponent,
+        //UpdateCategoryComponent,
+        UpdateNutrientComponent
     ],
     exports: [
         AppConfigComponent

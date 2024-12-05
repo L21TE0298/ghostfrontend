@@ -14,8 +14,8 @@ import { CouponCrearDTO } from '../interfaces/coupons.interface';
   templateUrl: './add-coupon.component.html',
   styleUrls: ['./add-coupon.component.css'],
   imports: [
-    CommonModule, // Importa el módulo necesario
-    ReactiveFormsModule, // Asegúrate de incluirlo aquí
+    CommonModule, 
+    ReactiveFormsModule, 
     HttpClientModule,
     TableModule,
     ButtonModule,
@@ -44,7 +44,7 @@ export class AddCouponComponent {
         (response) => {
           this.message = response.message;
           // Optionally, reset the form or navigate to another page
-          this.router.navigate(['/coupons']);
+          this.router.navigate(['/Coupons']);
         },
         (error) => {
           this.message = 'Error registering coupon: ' + error.message;

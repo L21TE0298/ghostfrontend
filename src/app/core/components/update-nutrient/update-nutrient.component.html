@@ -1,1 +1,20 @@
-<p>update-nutrient works!</p>
+<h1>Update Coupon</h1>
+
+<form (ngSubmit)="updateNutrient()">
+
+  <!-- Description -->
+  <div>
+    <label for="name">Nombre:</label>
+    <input
+      id="name"
+      type="text"
+      [(ngModel)]="nutrient.name"
+      name="name"
+      required
+    />
+  </div>
+  <div>
+    <button type="submit">Update Nutrient</button>
+    <button type="button" (click)="cancel()">Cancel</button>
+  </div>
+</form>

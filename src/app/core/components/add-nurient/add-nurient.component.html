@@ -1,1 +1,9 @@
-<p>add-nurient works!</p>
+<h1>Register a Nutrient</h1>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="name">Nombre:</label>
+    <input id="name" formControlName="name" />
+  </div>
+  <button type="submit" [disabled]="form.invalid">Register nutrient</button>
+  <button type="button" (click)="cancel()">Cancel</button>
+</form>
