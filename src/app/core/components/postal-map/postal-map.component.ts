@@ -28,6 +28,7 @@ L.Marker.prototype.options.icon = iconDefault;
   styleUrls: ['./postal-map.component.css']
 })
 export class PostalMapComponent implements OnInit, AfterViewInit {
+  direccion: string | undefined;
   map: L.Map | undefined;
   postalCode: string = '';
   lat: number | undefined;
@@ -47,12 +48,14 @@ export class PostalMapComponent implements OnInit, AfterViewInit {
 
     const savedLat = localStorage.getItem('lat');
     const savedLng = localStorage.getItem('lng');
-    if (savedLat && savedLng) {
+    const savedDireccion = localStorage.getItem('direccion'); // Obtener la dirección guardada
+    if (savedLat && savedLng && savedDireccion) {
       this.lat = parseFloat(savedLat);
       this.lng = parseFloat(savedLng);
+      this.direccion = savedDireccion; // Asignar la dirección a la variable
       this.map.setView([this.lat, this.lng], 13);
-      this.currentMarker = L.marker([this.lat, this.lng]).addTo(this.map)
-        .bindPopup(`Su ubicacion`)
+      this.currentMarker = L.marker([this.lat, this.lng], { icon: iconDefault }).addTo(this.map)
+        .bindPopup(this.direccion) // Mostrar la dirección en el popup
         .openPopup();
     }
 
@@ -66,11 +69,17 @@ export class PostalMapComponent implements OnInit, AfterViewInit {
       }
 
       this.currentMarker = L.marker([lat, lng]).addTo(this.map!)
-        .bindPopup(`Coordenadas: ${lat}, ${lng}`)
+        // .bindPopup(`Coordenadas: ${lat}, ${lng}`)
         .openPopup();
 
       localStorage.setItem('lat', lat.toString());
       localStorage.setItem('lng', lng.toString());
+
+
+      this.obtenerDireccion(lat, lng, (direccion: string) => {
+        this.direccion = direccion; // Guardar la dirección en la variable
+        this.currentMarker!.bindPopup(`Tu Dirección: `).openPopup();
+      });
     });
   }
 
@@ -90,8 +99,21 @@ export class PostalMapComponent implements OnInit, AfterViewInit {
 
       localStorage.setItem('lat', coordinates[0].toString());
       localStorage.setItem('lng', coordinates[1].toString());
+    
     }
   }
+
+  obtenerDireccion(lat: number, lon: number, callback: (direccion: string) => void) {
+    const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}`;
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        const direccion = data.display_name;
+        callback(direccion);
+        localStorage.setItem('direccion', direccion); 
+      })
+  }
+  
 
   getCoordinatesFromPostalCode(postalCode: string): [number, number] | null {
 
