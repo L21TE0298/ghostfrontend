@@ -1,1 +1,42 @@
-<p>page-principal-category works!</p>
+<p-table #dt1 [value]="listaCategories" dataKey="idCategory" [rows]="10" [loading]="loading" [rowHover]="true" styleClass="p-datatable-gridlines" [paginator]="true" [globalFilterFields]="['name']" responsiveLayout="scroll">
+    <ng-template pTemplate="caption">
+      <div class="flex justify-content-between flex-column sm:flex-row">
+        <button pButton label="Agregar Categoria" icon="pi pi-plus" (click)="redirectToAdd()">ADD</button>
+        <span class="p-input-icon-left mb-2">
+          <i class="pi pi-search"></i>
+         
+        </span>
+      </div>
+    </ng-template>
+  
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Número de categoria</th>
+        <th>Nombre de categoria</th>
+        <th>Acciones</th> <!-- Nueva columna de acciones -->
+      </tr>
+    </ng-template>
+  
+    <ng-template pTemplate="body" let-category>
+      <tr>
+        <td>{{category.idCategory}}</td>
+        <td>{{category.name}}</td>
+        <td>
+          <button pButton label="Actualizar" icon="pi pi-refresh" (click)="navigateToUpdate(category.idCategory)">Update</button>
+        </td>
+      </tr>
+    </ng-template>
+  
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="9">No se encontraron cupones.</td>
+      </tr>
+    </ng-template>
+  
+    <ng-template pTemplate="loadingbody">
+      <tr>
+        <td colspan="9">Cargando los datos. Por favor espere.</td>
+      </tr>
+    </ng-template>
+  </p-table>
+  

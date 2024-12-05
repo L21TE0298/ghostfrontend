@@ -28,7 +28,7 @@ import { UpdateNutrientComponent } from '../../core/components/update-nutrient/u
         AppConfigComponent,
         UpdateCouponComponent,
         //UpdateIngredientComponent,
-        //UpdateCategoryComponent,
+        UpdateCategoryComponent,
         UpdateNutrientComponent
     ],
     exports: [

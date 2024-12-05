@@ -1,1 +1,9 @@
-<p>add-category works!</p>
+<h1>Register a Category</h1>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="name">Nombre:</label>
+    <input id="name" formControlName="name" />
+  </div>
+  <button type="submit" [disabled]="form.invalid">Register category</button>
+  <button type="button" (click)="cancel()">Cancel</button>
+</form>
