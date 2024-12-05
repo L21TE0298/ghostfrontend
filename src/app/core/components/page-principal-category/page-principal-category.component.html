@@ -1,7 +1,7 @@
 <p-table #dt1 [value]="listaCategories" dataKey="idCategory" [rows]="10" [loading]="loading" [rowHover]="true" styleClass="p-datatable-gridlines" [paginator]="true" [globalFilterFields]="['name']" responsiveLayout="scroll">
     <ng-template pTemplate="caption">
       <div class="flex justify-content-between flex-column sm:flex-row">
-        <button pButton label="Agregar Categoria" icon="pi pi-plus" (click)="redirectToAdd()">ADD</button>
+        <!-- <button pButton label="Agregar Categoria" icon="pi pi-plus" (click)="redirectToAdd()">ADD</button> -->
         <span class="p-input-icon-left mb-2">
           <i class="pi pi-search"></i>
          
@@ -22,14 +22,15 @@
         <td>{{category.idCategory}}</td>
         <td>{{category.name}}</td>
         <td>
-          <button pButton label="Actualizar" icon="pi pi-refresh" (click)="navigateToUpdate(category.idCategory)">Update</button>
+          <!-- <button pButton pRipple label="Actualizar" (click)="navigateToUpdate(category.idCategory)"  class="p-button-rounded p-button-warning">Update</button> -->
+          <button pbutton pripple type="button" label="Actualizar" class="p-element p-ripple p-button-rounded p-button-warning p-button p-component"(click)="navigateToUpdate(category.idCategory)">Update</button>
         </td>
       </tr>
     </ng-template>
   
     <ng-template pTemplate="emptymessage">
       <tr>
-        <td colspan="9">No se encontraron cupones.</td>
+        <td colspan="9">No se encontraron categorias.</td>
       </tr>
     </ng-template>
   

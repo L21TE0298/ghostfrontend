@@ -1,0 +1,12 @@
+.bg-gym {
+    background-image: url('https://img.freepik.com/foto-gratis/equipo-gimnasio-3d_23-2151114137.jpg'); /* Cambia esto por la URL de tu imagen */
+    background-size: cover; /* Ajusta la imagen para cubrir todo el fondo */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+  }
+  
+  .card {
+    background: rgba(255, 255, 255, 0.9); /* Fondo semitransparente para el formulario */
+    border-radius: 8px;
+  }
+  

@@ -1,97 +1,133 @@
-<h1>Update Coupon</h1>
+<div class="flex flex-column align-items-center justify-content-center min-h-screen bg-gym">
+  <h1
+    style="
+      -webkit-text-stroke: 2px black;
+      color: rgb(180, 222, 14);
+      font-weight: bold;
+      text-align: center;
+    "
+  >
+    Update Coupon
+  </h1>
 
-<form (ngSubmit)="updateCoupon()">
-  <!-- Code Discount -->
-  <div>
-    <label for="codeDiscount">Code Discount:</label>
-    <input
-      id="codeDiscount"
-      type="text"
-      [(ngModel)]="coupon.codeDiscount"
-      name="codeDiscount"
-      required
-    />
+  <form (ngSubmit)="updateCoupon()" class="w-75 card p-4">
+    <!-- Code Discount -->
+    <div class="p-fluid">
+      <label for="codeDiscount" class="col-12 mb-2 md:col-2 md:mb-0">Code Discount:</label>
+      <input
+        pInputText
+        id="codeDiscount"
+        type="text"
+        [(ngModel)]="coupon.codeDiscount"
+        name="codeDiscount"
+        class="p-inputtext p-component p-element"
+        required
+      />
+    </div>
+
+    <!-- Description -->
+    <div class="p-fluid">
+      <label for="description" class="col-12 mb-2 md:col-2 md:mb-0">Description:</label>
+      <input
+        pInputText
+        id="description"
+        type="text"
+        [(ngModel)]="coupon.description"
+        name="description"
+        class="p-inputtext p-component p-element"
+        required
+      />
+    </div>
+
+    <!-- Discount Percentage -->
+    <div class="p-fluid">
+      <label for="discountPercentage" class="col-12 mb-2 md:col-2 md:mb-0">Discount Percentage:</label>
+      <input
+        pInputText
+        id="discountPercentage"
+        type="number"
+        [(ngModel)]="coupon.discountPercentage"
+        name="discountPercentage"
+        class="p-inputtext p-component p-element"
+        required
+        min="0"
+        max="100"
+      />
+    </div>
+
+    <!-- Init Date -->
+    <div class="p-fluid">
+      <label for="initDate" class="col-12 mb-2 md:col-2 md:mb-0">Init Date:</label>
+      <input
+        pInputText
+        id="initDate"
+        type="date"
+        [(ngModel)]="coupon.initDate"
+        name="initDate"
+        class="p-inputtext p-component p-element"
+        required
+      />
+    </div>
+
+    <!-- Expiration Date -->
+    <div class="p-fluid">
+      <label for="expirationDate" class="col-12 mb-2 md:col-2 md:mb-0">Expiration Date:</label>
+      <input
+        pInputText
+        id="expirationDate"
+        type="date"
+        [(ngModel)]="coupon.expirationDate"
+        name="expirationDate"
+        class="p-inputtext p-component p-element"
+        required
+      />
+    </div>
+
+    <!-- Status -->
+    <div class="p-fluid">
+      <label for="status" class="col-12 mb-2 md:col-2 md:mb-0">Status:</label>
+      <select
+        id="status"
+        [(ngModel)]="coupon.status"
+        name="status"
+        class="p-inputtext p-component p-element"
+        required
+      >
+        <option [value]="true">Active</option>
+        <option [value]="false">Inactive</option>
+      </select>
+    </div>
+
+    <!-- Category ID -->
+    <div class="p-fluid">
+      <label for="idCategory" class="col-12 mb-2 md:col-2 md:mb-0">Category ID:</label>
+      <input
+        pInputText
+        id="idCategory"
+        type="number"
+        [(ngModel)]="coupon.idCategory"
+        name="idCategory"
+        class="p-inputtext p-component p-element"
+        required
+      />
+    </div>
+
+    <!-- Buttons -->
+    <div class="flex gap-3 mt-3 justify-content-center">
+      <button pButton pRipple type="submit" label="Update Coupon" class="p-button-rounded p-button-warning"></button>
+      <button
+        pButton
+        pRipple
+        type="button"
+        label="Cancel"
+        class="p-button-rounded p-button-danger"
+        (click)="cancel()"
+      ></button>
+    </div>
+  </form>
+
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="error mt-3">
+    <p>{{ errorMessage }}</p>
   </div>
-
-  <!-- Description -->
-  <div>
-    <label for="description">Description:</label>
-    <input
-      id="description"
-      type="text"
-      [(ngModel)]="coupon.description"
-      name="description"
-      required
-    />
-  </div>
-
-  <!-- Discount Percentage -->
-  <div>
-    <label for="discountPercentage">Discount Percentage:</label>
-    <input
-      id="discountPercentage"
-      type="number"
-      [(ngModel)]="coupon.discountPercentage"
-      name="discountPercentage"
-      required
-      min="0"
-      max="100"
-    />
-  </div>
-
-  <!-- Init Date -->
-  <div>
-    <label for="initDate">Init Date:</label>
-    <input
-      id="initDate"
-      type="date"
-      [(ngModel)]="coupon.initDate"
-      name="initDate"
-      required
-    />
-  </div>
-
-  <!-- Expiration Date -->
-  <div>
-    <label for="expirationDate">Expiration Date:</label>
-    <input
-      id="expirationDate"
-      type="date"
-      [(ngModel)]="coupon.expirationDate"
-      name="expirationDate"
-      required
-    />
-  </div>
-
-  <!-- Status -->
-  <div>
-    <label for="status">Status:</label>
-    <select id="status" [(ngModel)]="coupon.status" name="status" required>
-      <option [value]="true">Active</option>
-      <option [value]="false">Inactive</option>
-    </select>
-  </div>
-
-  <!-- Category ID -->
-  <div>
-    <label for="idCategory">Category ID:</label>
-    <input
-      id="idCategory"
-      type="number"
-      [(ngModel)]="coupon.idCategory"
-      name="idCategory"
-      required
-    />
-  </div>
-
-  <!-- Buttons -->
-  <div>
-    <button type="submit">Update Coupon</button>
-    <button type="button" (click)="cancel()">Cancel</button>
-  </div>
-</form>
-
-<!-- Error Message -->
-<div *ngIf="errorMessage" class="error">
-  <p>{{ errorMessage }}</p>
 </div>
